@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6026898708412421561}
   - component: {fileID: 6026898708412421559}
   - component: {fileID: 6026898708412421558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6026898708826733415}
   - component: {fileID: 6026898708826733412}
   - component: {fileID: 4145270153742817365}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
