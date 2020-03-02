@@ -6,9 +6,17 @@ public class Player : DynamicEntity
     [Header("Player")]
     public float speed = 4f;
 
+    [Header("Player Combat")]
+    public Weapon activeWeapon;
+
     /// =============================================
     void Update()
     {
+        if (Input.GetButton("Fire1"))
+        {
+            this.activeWeapon.Shoot();
+        }
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
