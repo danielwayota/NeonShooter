@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  speed: 4
+  speed: 6
   weapon: {fileID: 2421375274055845763}
 --- !u!1 &5636948648897005586
 GameObject:
