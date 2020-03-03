@@ -8,19 +8,24 @@ public class Spawner : MonoBehaviour
     public GameObject enemyPrfb;
 
     [HeaderAttribute("Spawn")]
+    public int enemyMax = 1;
     public float spawnRate = 1f;
 
     public Transform spawnLineLeft;
     public Transform spawnLineRight;
 
+    /// ==========================================
     private void Awake()
     {
         StartCoroutine(this.SpawnLoop());
     }
 
+    /// ==========================================
     IEnumerator SpawnLoop()
     {
-        while (true)
+        int i = 0;
+
+        while (i < this.enemyMax)
         {
             yield return new WaitForSeconds(this.spawnRate);
 
@@ -33,8 +38,7 @@ public class Spawner : MonoBehaviour
 
             var go = Instantiate(this.enemyPrfb, position, Quaternion.identity);
 
-            // TODO: Make the enemies go to fixed position and avoid this
-            Destroy(go, 10f);
+            i++;
         }
     }
 }
