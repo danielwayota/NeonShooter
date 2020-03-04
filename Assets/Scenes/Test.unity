@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67c1f38498fcb343bfbef4d1620861a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrfb: {fileID: 4781681119332894840, guid: ce3eccc36e825ab429ab799942c81443,
+  enemyPrfb: {fileID: 2907481666695796900, guid: 259ac037b7a051c78848aaf01b2f46e5,
     type: 3}
   enemyMax: 1000
   spawnRate: 1

@@ -65,11 +65,40 @@ public class EnemyGrid : MonoBehaviour
     }
 
     /// ==========================================
+    public Vector3 GetRandomPointLine(Vector3 current, float minDistanceToPoint)
+    {
+        return Vector3.zero;
+    }
+
+    /// ==========================================
     public Vector3 GetRandomPoint()
     {
         int index = Random.Range(0, this.positions.Count);
 
         return this.positions[index];
+    }
+
+    /// ==========================================
+    public Vector3 GetFarPoint(Vector3 current, float minDistanceToPoint)
+    {
+        bool found = false;
+
+        Vector3 newTarget = current;
+
+        float minDistance = 2 * minDistanceToPoint;
+
+        while (found == false)
+        {
+            newTarget = EnemyGrid.current.GetRandomPoint();
+
+            float distance = (newTarget - current).sqrMagnitude;
+            if (distance > minDistance)
+            {
+                found = true;
+            }
+        }
+
+        return newTarget;
     }
 
     /// ==========================================

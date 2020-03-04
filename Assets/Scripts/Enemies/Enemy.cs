@@ -9,17 +9,21 @@ public class Enemy : DynamicEntity
 
     public Weapon weapon;
 
-    private Vector3 targetPosition;
+    [HideInInspector]
+    public EnemyHorde horde;
 
-    protected bool arrived
+    [HideInInspector]
+    public Vector3 targetPosition { get; set; }
+
+    public bool isMoving
     {
-        get => Vector3.Distance(this.transform.position, this.targetPosition) < this.minDistanceToPoint;
+        get; protected set;
     }
 
     private float time = 0;
-    private float timeOut = 0.5f;
+    public float timeOut = 0.5f;
 
-    private float minDistanceToPoint = 0.1f;
+    protected float minDistanceToPoint = 0.1f;
 
     /// ==========================================
     protected override void Awake()
@@ -27,6 +31,7 @@ public class Enemy : DynamicEntity
         base.Awake();
 
         this.targetPosition = this.transform.position;
+        this.isMoving = true;
 
         StartCoroutine(this.ShootLoop());
     }
@@ -39,36 +44,38 @@ public class Enemy : DynamicEntity
         {
             this.time -= this.timeOut;
 
-            Vector3 path = this.targetPosition - this.transform.position;
-            Vector3 direction = path.normalized;
+            this.OnTick();
+        }
+    }
 
-            if (this.arrived == false)
+    /// ==========================================
+    protected virtual void OnTick()
+    {
+        Vector3 path = this.targetPosition - this.transform.position;
+        Vector3 direction = path.normalized;
+
+        bool needToMove = Vector3.Distance(this.transform.position, this.targetPosition) < this.minDistanceToPoint;
+
+        if (needToMove == false)
+        {
+            this.isMoving = true;
+
+            // Avoid getting too small movement velocity
+            float distance = Mathf.Max(path.magnitude, this.minDistanceToPoint);
+            direction *= Mathf.Min(this.speed, distance);
+
+            this.body.velocity = direction;
+        }
+        else
+        {
+            if (this.isMoving)
             {
-                // Avoid getting too small movement velocity
-                float distance = Mathf.Max(path.magnitude, this.minDistanceToPoint);
-                direction *= Mathf.Min(this.speed, distance);
+                this.isMoving = false;
 
-                this.body.velocity = direction;
-            }
-            else
-            {
-                bool found = false;
-                Vector3 newTarget = this.transform.position;
+                this.body.velocity = Vector3.zero;
 
-                float minDistance = 2 * this.minDistanceToPoint;
-
-                while (found == false)
-                {
-                    newTarget = EnemyGrid.current.GetRandomPoint();
-
-                    float distance = (newTarget - this.targetPosition).sqrMagnitude;
-                    if (distance > minDistance)
-                    {
-                        found = true;
-                    }
-                }
-
-                this.targetPosition = newTarget;
+                // Reached destination event
+                this.OnDestinationReached();
             }
         }
     }
@@ -83,4 +90,15 @@ public class Enemy : DynamicEntity
             this.weapon.Shoot();
         }
     }
+
+    /// ==========================================
+    protected override void Die()
+    {
+        this.horde?.OnEnemyDestroyed(this);
+
+        base.Die();
+    }
+
+    /// ==========================================
+    protected virtual void OnDestinationReached() {}
 }
