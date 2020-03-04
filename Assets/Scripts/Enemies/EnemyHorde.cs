@@ -50,11 +50,11 @@ public class EnemyHorde : MonoBehaviour
             if (doTheNextMove)
             {
                 // TODO: Search for a line in the grid and move the enemies
-                Vector3 position = EnemyGrid.current.GetRandomPoint();
+                var positions = EnemyGrid.current.GetRandomPointLine(this.enemies.Count);
 
-                foreach (var enemy in this.enemies)
+                for (int i = 0; i < this.enemies.Count; i++)
                 {
-                    enemy.targetPosition = position;
+                    this.enemies[i].targetPosition = positions[i];
                 }
             }
 

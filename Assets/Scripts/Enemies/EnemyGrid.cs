@@ -45,9 +45,9 @@ public class EnemyGrid : MonoBehaviour
         float horizontalStep = width / this.columns;
         float verticalStep = height / this.rows;
 
-        for (int i = 0; i <= this.columns; i++)
+        for (int j = 0; j <= this.rows; j++)
         {
-            for (int j = 0; j <= this.rows; j++)
+            for (int i = 0; i <= this.columns; i++)
             {
                 var pos = new Vector3(
                     i * horizontalStep,
@@ -65,9 +65,42 @@ public class EnemyGrid : MonoBehaviour
     }
 
     /// ==========================================
-    public Vector3 GetRandomPointLine(Vector3 current, float minDistanceToPoint)
+    public Vector3[] GetRandomPointLine(int size)
     {
-        return Vector3.zero;
+        int x = Random.Range(0, this.columns);
+        int y = Random.Range(0, this.rows);
+
+        Vector3[] points = new Vector3[size];
+
+        int horizontalDirection = 0;
+        int verticalDirection = 0;
+
+        float dice = Random.Range(0f, 1f);
+
+        if (dice < 0.5f)
+        {
+            // Can go right? Go right. Else, go left;
+            horizontalDirection = (x + size < this.columns) ? 1 : -1;
+        }
+        else
+        {
+            // Can go down? Go down. Else, go up;
+            verticalDirection = (y + size < this.rows) ? 1 : -1;
+        }
+
+        for (int i = 0; i < size; i++)
+        {
+            int index = (y * this.columns) + x;
+
+            points[i] = this.positions[index];
+
+            x += horizontalDirection;
+            y += verticalDirection;
+        }
+
+        Vector2Int direction = new Vector2Int(0, 0);
+
+        return points;
     }
 
     /// ==========================================
