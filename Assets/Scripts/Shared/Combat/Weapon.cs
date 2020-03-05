@@ -4,7 +4,7 @@ public class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
     public float recoilTime = 1f;
-    public GameObject projectilePrefab;
+    public GameObject projectilePrfb;
 
     [Header("Shoot Points")]
     public Transform[] shootPoints;
@@ -44,8 +44,8 @@ public class Weapon : MonoBehaviour
 
         foreach (var shootPoint in this.shootPoints)
         {
-            var projectile = Instantiate(
-                this.projectilePrefab,
+            var projectile = Pool.Instantiate(
+                this.projectilePrfb.name,
                 shootPoint.position,
                 shootPoint.rotation
             );

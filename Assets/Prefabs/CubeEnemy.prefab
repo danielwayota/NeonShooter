@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoilTime: 0.5
-  projectilePrefab: {fileID: 6026898708826733417, guid: 0ce66873653810f4db50a604736a40a4,
+  projectilePrfb: {fileID: 6026898708826733417, guid: 0ce66873653810f4db50a604736a40a4,
     type: 3}
   shootPoints:
   - {fileID: 1696685812548210284}
@@ -215,6 +215,8 @@ MonoBehaviour:
   maxHealth: 20
   speed: 6
   weapon: {fileID: 2421375274055845763}
+  horde: {fileID: 0}
+  timeOut: 0.5
 --- !u!1 &5636948648897005586
 GameObject:
   m_ObjectHideFlags: 0

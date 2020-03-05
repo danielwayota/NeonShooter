@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4994827647735756662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4994827647837137949}
   - component: {fileID: 4994827647837137939}
   - component: {fileID: 4994827647837137938}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FilledPentagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4994827648081436759}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,8 @@ GameObject:
   - component: {fileID: 4994827648175470533}
   - component: {fileID: 4994827648175470532}
   - component: {fileID: -1935183773732028330}
-  m_Layer: 0
+  - component: {fileID: 1605289025542135854}
+  m_Layer: 9
   m_Name: CrossEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +186,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -193,7 +194,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-1935183773732028330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,22 @@ MonoBehaviour:
   weapon: {fileID: 4994827648823907061}
   horde: {fileID: 0}
   timeOut: 0.5
+--- !u!58 &1605289025542135854
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994827648175470534}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
 --- !u!1 &4994827648823907063
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4994827648823907060}
   - component: {fileID: 4994827648823907061}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoilTime: 1
-  projectilePrefab: {fileID: 6026898708826733417, guid: 0ce66873653810f4db50a604736a40a4,
+  projectilePrfb: {fileID: 6026898708826733417, guid: 0ce66873653810f4db50a604736a40a4,
     type: 3}
   shootPoints:
   - {fileID: 4994827649076552414}
@@ -275,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4994827649076552414}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4994827649177443845}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
