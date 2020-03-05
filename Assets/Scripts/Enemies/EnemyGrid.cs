@@ -29,6 +29,8 @@ public class EnemyGrid : MonoBehaviour
     private Vector3[,] positions;
     private bool[,] occupationBuffer;
 
+    public const int MAX_ITERATIONS = 1000;
+
     /// ==========================================
     private void Awake()
     {
@@ -68,13 +70,14 @@ public class EnemyGrid : MonoBehaviour
     }
 
     /// ==========================================
-    public Vector2Int[] GetRandomPointLine(int size)
+    public Vector2Int[] GetRandomFreeCoordinateLine(int size)
     {
         Vector2Int[] points = new Vector2Int[size];
 
         bool done = false;
 
-        while (!done)
+        int iterations = 0;
+        while (!done && iterations < MAX_ITERATIONS)
         {
             var pivot = this.GetRandomFreeCoordinate();
 
@@ -82,7 +85,6 @@ public class EnemyGrid : MonoBehaviour
             int verticalDirection = 0;
 
             float dice = Random.Range(0f, 1f);
-
             if (dice < 0.5f)
             {
                 // Can go right? Go right. Else, go left;
@@ -108,13 +110,23 @@ public class EnemyGrid : MonoBehaviour
                 pivot.x += horizontalDirection;
                 pivot.y += verticalDirection;
             }
+
+            iterations++;
+        }
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (points[i] == null)
+            {
+                points[i] = Vector2Int.zero;
+            }
         }
 
         return points;
     }
 
     /// ==========================================
-    public Vector3 GetPosition(Vector2Int coordinate)
+    public Vector3 GetPositionFromCoordinate(Vector2Int coordinate)
     {
         return this.positions[coordinate.x, coordinate.y];
     }
@@ -126,12 +138,16 @@ public class EnemyGrid : MonoBehaviour
         int x = 0;
         int y = 0;
 
-        while (coordinateHeld)
+        int iterations = 0;
+
+        while (coordinateHeld && iterations < MAX_ITERATIONS)
         {
             x = Random.Range(0, this.columns);
             y = Random.Range(0, this.rows);
 
             coordinateHeld = this.occupationBuffer[x, y];
+
+            iterations++;
         }
 
         return new Vector2Int(x, y);
@@ -140,18 +156,14 @@ public class EnemyGrid : MonoBehaviour
     /// ==========================================
     public Vector2Int GetFarPointCoordinates(Vector2Int current)
     {
-        bool found = false;
-
         Vector2Int newTarget = current;
 
-        while (found == false)
+        int iterations = 0;
+        while (current == newTarget && iterations < MAX_ITERATIONS)
         {
             newTarget = EnemyGrid.current.GetRandomFreeCoordinate();
 
-            if (current != newTarget)
-            {
-                found = true;
-            }
+            iterations++;
         }
 
         return newTarget;
@@ -180,10 +192,20 @@ public class EnemyGrid : MonoBehaviour
     {
         if (this.positions != null)
         {
-            Gizmos.color = Color.red;
-            foreach (var pos in this.positions)
+            for (int j = 0; j < this.rows; j++)
             {
-                Gizmos.DrawCube(pos, Vector3.one);
+                for (int i = 0; i < this.columns; i++)
+                {
+                    if (this.occupationBuffer[i, j])
+                    {
+                        Gizmos.color = Color.red;
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.green;
+                    }
+                    Gizmos.DrawCube(this.positions[i,j], Vector3.one);
+                }
             }
         }
 

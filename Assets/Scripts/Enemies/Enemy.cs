@@ -23,7 +23,7 @@ public class Enemy : DynamicEntity
             EnemyGrid.current.HoldCoordinate(value);
             this._targetGridCoordinates = value;
 
-            this.targetPosition = EnemyGrid.current.GetPosition(value);
+            this.targetPosition = EnemyGrid.current.GetPositionFromCoordinate(value);
         }
     }
 
