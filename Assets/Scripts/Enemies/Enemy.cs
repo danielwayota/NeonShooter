@@ -12,8 +12,20 @@ public class Enemy : DynamicEntity
     [HideInInspector]
     public EnemyHorde horde;
 
-    [HideInInspector]
-    public Vector3 targetPosition { get; set; }
+    protected Vector3 targetPosition;
+
+    private Vector2Int _targetGridCoordinates;
+    public Vector2Int targetGridCoordinates {
+        protected get => this._targetGridCoordinates;
+        set {
+            EnemyGrid.current.LeaveCoordinate(this._targetGridCoordinates);
+
+            EnemyGrid.current.HoldCoordinate(value);
+            this._targetGridCoordinates = value;
+
+            this.targetPosition = EnemyGrid.current.GetPosition(value);
+        }
+    }
 
     public bool isMoving
     {
@@ -32,6 +44,7 @@ public class Enemy : DynamicEntity
 
         this.targetPosition = this.transform.position;
         this.isMoving = true;
+        this._targetGridCoordinates = Vector2Int.zero;
 
         StartCoroutine(this.ShootLoop());
     }

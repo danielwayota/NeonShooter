@@ -46,4 +46,4 @@ MonoBehaviour:
   hordeEnemyPrfb: {fileID: 4781681119332894840, guid: ce3eccc36e825ab429ab799942c81443,
     type: 3}
   minEnemies: 1
-  maxEnemies: 8
+  maxEnemies: 4

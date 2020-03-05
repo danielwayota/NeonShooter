@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [Header("Enemies")]
-    public GameObject enemyPrfb;
+    public GameObject[] enemyPrfbs;
 
     [HeaderAttribute("Spawn")]
     public int enemyMax = 1;
@@ -36,7 +36,9 @@ public class Spawner : MonoBehaviour
                 percentage
             );
 
-            var go = Instantiate(this.enemyPrfb, position, Quaternion.identity);
+            int index = Random.Range(0, this.enemyPrfbs.Length);
+
+            var go = Instantiate(this.enemyPrfbs[index], position, Quaternion.identity);
 
             i++;
         }

@@ -54,7 +54,7 @@ public class EnemyHorde : MonoBehaviour
 
                 for (int i = 0; i < this.enemies.Count; i++)
                 {
-                    this.enemies[i].targetPosition = positions[i];
+                    this.enemies[i].targetGridCoordinates = positions[i];
                 }
             }
 

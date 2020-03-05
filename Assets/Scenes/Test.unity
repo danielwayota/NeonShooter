@@ -620,7 +620,7 @@ MonoBehaviour:
   rightCorner: {fileID: 875366360}
   leftCorner: {fileID: 1570286794}
   columns: 16
-  rows: 8
+  rows: 10
 --- !u!4 &721643921
 Transform:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875366359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.15, y: -4.89, z: 0}
+  m_LocalPosition: {x: 29.15, y: -9.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 721643921}
@@ -849,7 +849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570286793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.57, y: 10.59, z: 0}
+  m_LocalPosition: {x: -28.1, y: 11.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 721643921}
@@ -900,9 +900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67c1f38498fcb343bfbef4d1620861a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrfb: {fileID: 2907481666695796900, guid: 259ac037b7a051c78848aaf01b2f46e5,
-    type: 3}
-  enemyMax: 1000
+  enemyPrfbs:
+  - {fileID: 2907481666695796900, guid: 259ac037b7a051c78848aaf01b2f46e5, type: 3}
+  - {fileID: 4994827648175470534, guid: a66b9005087a044bc98f4ef5a4cc6fd3, type: 3}
+  - {fileID: 4994827648175470534, guid: 91260299c69ab98d289cfa9759c3a555, type: 3}
+  enemyMax: 32
   spawnRate: 1
   spawnLineLeft: {fileID: 2130259644}
   spawnLineRight: {fileID: 105544362}
