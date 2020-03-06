@@ -13,7 +13,12 @@ public class Player : DynamicEntity
 
     [Header("Player sound")]
     public AudioSource shootSound;
+    public AudioSource damageSound;
+    public GameObject deathEffect;
+
     protected Weapon activeWeapon;
+
+    protected Shake cameraShake;
 
     private int _killStreak;
     protected int killStreak
@@ -43,6 +48,8 @@ public class Player : DynamicEntity
         {
             weapon.OnKill += this.OnKill;
         }
+
+        this.cameraShake = GameObject.FindObjectOfType<Shake>();
     }
 
     /// =============================================
@@ -65,6 +72,8 @@ public class Player : DynamicEntity
     /// =============================================
     public override void DamageHealth(float amount)
     {
+        this.cameraShake.DoTheShake();
+        this.damageSound.Play();
         base.DamageHealth(amount);
 
         this.killStreak = 0;
@@ -98,6 +107,7 @@ public class Player : DynamicEntity
     {
         GameManager.current.OnPlayerDeath();
 
+        Instantiate(this.deathEffect, this.transform.position, Quaternion.identity);
         this.hud.gameObject.SetActive(false);
 
         base.Die();

@@ -98,6 +98,8 @@ public class Enemy : DynamicEntity
     /// ==========================================
     IEnumerator ShootLoop()
     {
+        yield return new WaitForSeconds(3f);
+
         while (true)
         {
             float waitTime = Random.Range(1f, 3f);
