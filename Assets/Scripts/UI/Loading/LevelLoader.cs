@@ -16,7 +16,7 @@ public class LevelLoader : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(nextLevel);
+        StartCoroutine(this.DoTheLoad(nextLevel));
     }
 
     IEnumerator DoTheLoad(string levelName)

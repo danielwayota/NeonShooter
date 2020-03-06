@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68ac885cb249c607a2109c51c0618a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 8
   speed: 8
   weapon: {fileID: 4994827648823907061}
   horde: {fileID: 0}
@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoilTime: 1
+  damage: 1
   projectilePrfb: {fileID: 6026898708826733417, guid: 0ce66873653810f4db50a604736a40a4,
     type: 3}
   shootPoints:
