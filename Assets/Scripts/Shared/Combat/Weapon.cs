@@ -36,10 +36,10 @@ public class Weapon : MonoBehaviour
     }
 
     /// =============================================
-    public void Shoot()
+    public bool Shoot()
     {
         if (this.ready == false)
-            return;
+            return false;
 
         this.time = 0;
 
@@ -57,6 +57,8 @@ public class Weapon : MonoBehaviour
             var projectile = projectileGO.GetComponent<Projectile>();
             projectile.weapon = this;
         }
+
+        return true;
     }
 
     /// =============================================

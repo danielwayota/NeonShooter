@@ -131,6 +131,8 @@ MonoBehaviour:
   maxHealth: 8
   speed: 8
   weapon: {fileID: 4994827648823907061}
+  deathEffect: {fileID: 3322475891645527575, guid: e78ae863cec66c7479edbe3ab9248939,
+    type: 3}
   horde: {fileID: 0}
   timeOut: 0.5
 --- !u!58 &-7933887297630191223

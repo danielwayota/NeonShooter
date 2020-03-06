@@ -10,6 +10,9 @@ public class Player : DynamicEntity
     [Header("Player Combat")]
     public float stepsToPowerUp = 8;
     public Weapon[] weapons;
+
+    [Header("Player sound")]
+    public AudioSource shootSound;
     protected Weapon activeWeapon;
 
     private int _killStreak;
@@ -47,7 +50,8 @@ public class Player : DynamicEntity
     {
         if (Input.GetButton("Fire1"))
         {
-            this.activeWeapon.Shoot();
+            if (this.activeWeapon.Shoot())
+                this.shootSound.Play();
         }
 
         float h = Input.GetAxisRaw("Horizontal");

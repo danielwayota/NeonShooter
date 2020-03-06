@@ -9,6 +9,8 @@ public class Enemy : DynamicEntity
 
     public Weapon weapon;
 
+    public GameObject deathEffect;
+
     [HideInInspector]
     public EnemyHorde horde;
 
@@ -110,6 +112,8 @@ public class Enemy : DynamicEntity
     protected override void Die()
     {
         this.horde?.OnEnemyDestroyed(this);
+
+        Instantiate(this.deathEffect, this.transform.position, Quaternion.identity);
 
         base.Die();
     }
