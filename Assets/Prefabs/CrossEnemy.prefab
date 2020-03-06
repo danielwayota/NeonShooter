@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4e9123ccfb4239690e3bfb5c27c395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoilTime: 1
+  recoilTime: 0.1
   damage: 1
   projectilePrfb: {fileID: 6026898708826733417, guid: 0ce66873653810f4db50a604736a40a4,
     type: 3}

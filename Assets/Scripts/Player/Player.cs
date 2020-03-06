@@ -76,7 +76,9 @@ public class Player : DynamicEntity
             this.activeWeapon.gameObject.SetActive(false);
 
         this.activeWeapon = weapon;
-        this.activeWeapon.gameObject.SetActive(true);
+
+        if (this.activeWeapon != null)
+            this.activeWeapon.gameObject.SetActive(true);
     }
 
     /// =============================================

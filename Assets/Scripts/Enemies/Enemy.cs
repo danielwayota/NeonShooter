@@ -98,7 +98,9 @@ public class Enemy : DynamicEntity
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            float waitTime = Random.Range(1f, 3f);
+
+            yield return new WaitForSeconds(waitTime);
 
             this.weapon.Shoot();
         }

@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerDeath()
     {
+        var spawner = GameObject.FindObjectOfType<Spawner>();
+
+        Destroy(spawner.gameObject);
+
         this.gameOverScreen.SetActive(true);
     }
 }
