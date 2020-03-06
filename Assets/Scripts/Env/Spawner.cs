@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
     private int maxLevel = 8;
 
     private int currentBagSize = 1;
-    private float waitBetweenSpawns = 3f;
+    private float waitBetweenSpawns = 5f;
 
     /// ==========================================
     private void Awake()
@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(30f);
 
             if (this.level >= this.maxLevel)
                 break;

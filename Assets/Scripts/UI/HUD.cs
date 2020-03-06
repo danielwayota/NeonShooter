@@ -23,7 +23,7 @@ public class HUD : MonoBehaviour
 
         for (int i = 0; i < level; i++)
         {
-            dangerStr += "|";
+            dangerStr += "/";
         }
 
         this.dangerLabel.text = dangerStr;
