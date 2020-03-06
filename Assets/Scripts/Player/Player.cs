@@ -24,4 +24,11 @@ public class Player : DynamicEntity
 
         this.body.velocity = movement * this.speed;
     }
+
+    protected override void Die()
+    {
+        GameManager.current.OnPlayerDeath();
+
+        base.Die();
+    }
 }
