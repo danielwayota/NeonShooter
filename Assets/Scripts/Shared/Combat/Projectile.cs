@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
 
     [Header("Projectile")]
     public float speed;
+    public Weapon weapon;
 
     private Rigidbody2D body;
 
@@ -50,7 +51,6 @@ public class Projectile : MonoBehaviour
         if (entity == null)
             return;
 
-        // TODO: Get this value from some where
-        entity.DamageHealth(10);
+        this.weapon.OnProjectileHit(entity);
     }
 }

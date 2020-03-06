@@ -1,13 +1,17 @@
+using System;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
     public float recoilTime = 1f;
+    public float damage = 1f;
     public GameObject projectilePrfb;
 
     [Header("Shoot Points")]
     public Transform[] shootPoints;
+
+    public Action OnKill;
 
     public bool ready
     {
@@ -44,11 +48,26 @@ public class Weapon : MonoBehaviour
 
         foreach (var shootPoint in this.shootPoints)
         {
-            var projectile = Pool.Instantiate(
+            var projectileGO = Pool.Instantiate(
                 this.projectilePrfb.name,
                 shootPoint.position,
                 shootPoint.rotation
             );
+
+            var projectile = projectileGO.GetComponent<Projectile>();
+            projectile.weapon = this;
+        }
+    }
+
+    /// =============================================
+    public void OnProjectileHit(Entity entity)
+    {
+        entity.DamageHealth(this.damage);
+
+        if (entity.isAlive == false)
+        {
+            if (this.OnKill != null)
+                this.OnKill();
         }
     }
 }
