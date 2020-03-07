@@ -21,7 +21,17 @@ public class EnemyHorde : MonoBehaviour
 
         for (int i = 0; i < enemyCount; i++)
         {
-            var go = Instantiate(this.hordeEnemyPrfb, this.transform.position, Quaternion.identity);
+            Vector3 offset = new Vector3(
+                Random.Range(-0.5f, 0.5f),
+                Random.Range(-0.5f, 0.5f),
+                0
+            );
+
+            var go = Instantiate(
+                this.hordeEnemyPrfb,
+                this.transform.position + offset,
+                Quaternion.identity
+            );
 
             this.enemies.Add(go.GetComponent<Enemy>());
         }

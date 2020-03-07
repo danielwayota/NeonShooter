@@ -37,6 +37,12 @@ public class Enemy : DynamicEntity
     private float time = 0;
     public float timeOut = 0.5f;
 
+    // Personal space
+    public float personalSpaceRadius = 1f;
+    public LayerMask personalSpaceMask;
+
+    private Collider2D[] personalSpaceBuffer;
+
     protected float minDistanceToPoint = 0.1f;
 
     /// ==========================================
@@ -49,6 +55,8 @@ public class Enemy : DynamicEntity
         this._targetGridCoordinates = Vector2Int.zero;
 
         StartCoroutine(this.ShootLoop());
+
+        this.personalSpaceBuffer = new Collider2D[4];
     }
 
     /// ==========================================
@@ -66,18 +74,47 @@ public class Enemy : DynamicEntity
     /// ==========================================
     protected virtual void OnTick()
     {
-        Vector3 path = this.targetPosition - this.transform.position;
-        Vector3 direction = path.normalized;
-
         bool needToMove = Vector3.Distance(this.transform.position, this.targetPosition) < this.minDistanceToPoint;
 
         if (needToMove == false)
         {
             this.isMoving = true;
 
+            Vector3 path = this.targetPosition - this.transform.position;
+            Vector3 direction = path.normalized;
+
+            // Avoid other enemies
+            int count = Physics2D.OverlapCircleNonAlloc(
+                this.transform.position,
+                this.personalSpaceRadius,
+                this.personalSpaceBuffer,
+                this.personalSpaceMask
+            );
+
+            Vector3 enemiesPush = Vector3.zero;
+            for (int i = 0; i < count; i++)
+            {
+                if (this.personalSpaceBuffer[i].gameObject == this.gameObject)
+                    continue;
+
+                var otherEnemy = this.personalSpaceBuffer[i].transform;
+                Vector3 goAwayDirection = this.transform.position - otherEnemy.position;
+                float distanceToEnemy = goAwayDirection.sqrMagnitude;
+
+                // Avoid zero division error
+                distanceToEnemy = Mathf.Max(distanceToEnemy, .5f);
+
+                goAwayDirection /= distanceToEnemy;
+
+                enemiesPush += goAwayDirection;
+            }
+
+            direction += enemiesPush;
+
+
             // Avoid getting too small movement velocity
-            float distance = Mathf.Max(path.magnitude, this.minDistanceToPoint);
-            direction *= Mathf.Min(this.speed, distance);
+            float distanceToGridPoint = Mathf.Max(path.magnitude, this.minDistanceToPoint);
+            direction *= Mathf.Min(this.speed, distanceToGridPoint);
 
             this.body.velocity = direction;
         }
@@ -122,4 +159,9 @@ public class Enemy : DynamicEntity
 
     /// ==========================================
     protected virtual void OnDestinationReached() {}
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(this.transform.position, this.personalSpaceRadius);
+    }
 }

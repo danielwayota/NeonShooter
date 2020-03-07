@@ -214,6 +214,10 @@ MonoBehaviour:
     type: 3}
   horde: {fileID: 0}
   timeOut: 0.5
+  personalSpaceRadius: 2
+  personalSpaceMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!58 &1605289025542135854
 CircleCollider2D:
   m_ObjectHideFlags: 0

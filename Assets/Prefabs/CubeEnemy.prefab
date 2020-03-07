@@ -220,6 +220,10 @@ MonoBehaviour:
     type: 3}
   horde: {fileID: 0}
   timeOut: 0.5
+  personalSpaceRadius: 2
+  personalSpaceMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &5636948648897005586
 GameObject:
   m_ObjectHideFlags: 0
